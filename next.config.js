@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 /*
-Version: 1.0.1
+Version: 1.0.2
 Build Version: 1.0.7
 Last Updated: 2025-03-25
 Changes: Optimized webpack configuration for Cloudflare Pages
@@ -61,6 +61,11 @@ const nextConfig = {
     // Disable webpack cache for edge runtime
     if (isServer) {
       config.cache = false;
+    }
+
+    // Disable source maps in production
+    if (!isServer) {
+      config.devtool = false;
     }
 
     return config;
