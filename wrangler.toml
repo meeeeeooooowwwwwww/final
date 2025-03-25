@@ -2,7 +2,7 @@ name = "rumble-video-site"
 compatibility_date = "2023-10-01"
 
 # Cloudflare Pages configuration
-pages_build_output_dir = ".next"
+pages_build_output_dir = ".vercel/output/static"
 
 # Environment variables
 [vars]
