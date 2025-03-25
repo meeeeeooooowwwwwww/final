@@ -1,8 +1,13 @@
 name = "rumble-video-site"
 compatibility_date = "2023-10-01"
 
+# Cloudflare Pages configuration
+pages_build_output_dir = ".next"
+build_command = "npm run build"
+build_output_dir = ".next"
+
 [vars]
-NODE_ENV = "development"
+NODE_ENV = "production"
 
 [[kv_namespaces]]
 binding = "VIDEO_DATA"
