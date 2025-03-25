@@ -1,0 +1,10 @@
+name = "rumble-video-site"
+compatibility_date = "2023-10-01"
+
+[vars]
+NODE_ENV = "development"
+
+[[kv_namespaces]]
+binding = "VIDEO_DATA"
+id = "${VIDEO_DATA_KV_ID}"
+preview_id = "${VIDEO_DATA_KV_PREVIEW_ID}"  # Preview namespace for local development 
