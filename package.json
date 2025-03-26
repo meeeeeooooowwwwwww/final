@@ -8,9 +8,9 @@
   "scripts": {
     "dev": "next dev",
     "dev:cloudflare": "npm run build:cloudflare && npx wrangler pages dev . --kv VIDEO_DATA",
-    "build": "npm install && next build",
+    "build": "npx @cloudflare/next-on-pages",
     "start": "next start",
-    "build:cloudflare": "npm install && npx @cloudflare/next-on-pages",
+    "build:cloudflare": "npx @cloudflare/next-on-pages",
     "deploy": "npm run build:cloudflare && npx wrangler pages deploy .",
     "lint": "next lint",
     "test": "jest",
