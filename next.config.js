@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 /*
-Version: 1.0.4
+Version: 1.0.5
 Build Version: 1.0.7
 Last Updated: 2025-03-25
-Changes: Simplified webpack configuration and optimized for Cloudflare Pages
+Changes: Added edge runtime configuration for local testing
 */
 const nextConfig = {
   reactStrictMode: true,
@@ -16,6 +16,7 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['@heroicons/react', 'date-fns'],
+    runtime: 'edge',
   },
   webpack: (config, { dev, isServer }) => {
     // Optimize for Cloudflare Pages

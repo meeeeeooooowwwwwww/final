@@ -1,5 +1,5 @@
 {
-  "name": "rumble-video-site",
+  "name": "final",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -7,11 +7,12 @@
   },
   "scripts": {
     "dev": "next dev",
-    "dev:cloudflare": "npm run build:cloudflare && npx wrangler pages dev . --kv VIDEO_DATA",
+    "dev:cloudflare": "npm run build:cloudflare && npx wrangler pages dev C:/final --kv VIDEO_DATA",
+    "dev:edge": "NEXT_RUNTIME=edge npm run dev:cloudflare",
     "build": "npx @cloudflare/next-on-pages",
     "start": "next start",
     "build:cloudflare": "npx @cloudflare/next-on-pages",
-    "deploy": "npm run build:cloudflare && npx wrangler pages deploy .",
+    "deploy": "npm run build:cloudflare && npx wrangler pages deploy C:/final",
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
