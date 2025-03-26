@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 /*
-Version: 1.0.2
+Version: 1.0.3
 Build Version: 1.0.7
 Last Updated: 2025-03-25
 Changes: Optimized webpack configuration for Cloudflare Pages
