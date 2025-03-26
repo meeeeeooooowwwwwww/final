@@ -1,22 +1,21 @@
 /** @type {import('next').NextConfig} */
 /*
-Version: 1.0.5
+Version: 1.0.7
 Build Version: 1.0.7
 Last Updated: 2025-03-25
-Changes: Added edge runtime configuration for local testing
+Changes: Fixed CSS optimization and build configuration
 */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   poweredByHeader: false,
+  // Enable edge runtime
+  experimental: {
+    optimizePackageImports: ['@heroicons/react', 'date-fns'],
+  },
   images: {
     domains: ['rumble.com'],
     unoptimized: true,
-  },
-  experimental: {
-    optimizeCss: true,
-    optimizePackageImports: ['@heroicons/react', 'date-fns'],
-    runtime: 'edge',
   },
   webpack: (config, { dev, isServer }) => {
     // Optimize for Cloudflare Pages
