@@ -1,4 +1,4 @@
-# Rumble Video Site
+# Final
 
 A Next.js application for searching and displaying Rumble videos, articles, and businesses.
 
@@ -43,7 +43,7 @@ npm run dev:cloudflare
 ## Project Structure
 
 ```
-rumble-video-site/
+final/
 ├── src/
 │   ├── components/     # React components
 │   ├── context/       # React context providers
