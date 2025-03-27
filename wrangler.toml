@@ -4,8 +4,15 @@ compatibility_date = "2023-10-01"
 # Environment variables
 [vars]
 NODE_ENV = "production"
+NODE_VERSION = "20.11.1"
 
 [[kv_namespaces]]
 binding = "VIDEO_DATA"
 id = "${VIDEO_DATA_KV_ID}"
-preview_id = "${VIDEO_DATA_KV_PREVIEW_ID}"  # Preview namespace for local development 
+preview_id = "${VIDEO_DATA_KV_PREVIEW_ID}"  # Preview namespace for local development
+
+[build]
+command = "npm run build:cloudflare"
+
+[pages]
+pages_build_output_dir = ".vercel/output/static" 
