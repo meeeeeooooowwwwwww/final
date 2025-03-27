@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 interface ErrorProps {
   statusCode?: number;
