@@ -1,7 +1,7 @@
 /// <reference path="../../types/kv.d.ts" />
 import { Item, Video, Article, Business } from '@/types';
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 async function generateETag(data: any): Promise<string> {
   const str = JSON.stringify(data);

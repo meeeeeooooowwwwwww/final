@@ -4,12 +4,16 @@ import Head from 'next/head'
 import Script from 'next/script'
 import ErrorBoundary from '@/components/ErrorBoundary'
 import { ClientSearchProvider } from '../context/SearchContext'
+import { useEffect } from 'react'
 
 // Google Analytics measurement ID
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID
 
 // Site URL for meta tags
 const SITE_URL = 'https://test.nataliegwinters.com'
+
+// Configure edge runtime for all pages
+export const runtime = 'experimental-edge'
 
 export default function App({ Component, pageProps }: AppProps) {
   // Check if this is an error page

@@ -2,7 +2,7 @@
 import type { NextRequest } from 'next/server';
 import { Video } from '../../../types';
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 export default async function handler(req: NextRequest) {
   // Only allow GET requests

@@ -2,7 +2,7 @@
 import type { NextRequest } from 'next/server';
 import { Item } from '../../types';
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 interface KVNamespace {
   list: (options?: { prefix?: string; limit?: number; cursor?: string }) => Promise<{ keys: { name: string }[]; list_complete: boolean; cursor?: string }>;

@@ -1,23 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Hero from '../components/Hero';
 import LatestVideos from '../components/LatestVideos';
 import LatestNews from '../components/LatestNews';
 import { Video, Article } from '../types';
 
-interface HomeProps {
-  videos: Video[];
-  articles: Article[];
-}
+export const runtime = 'experimental-edge';
 
-interface KVKey {
-  name: string;
-  metadata?: {
-    timestamp: number;
-  };
-}
+const Home: React.FC = () => {
+  const [videos, setVideos] = useState<Video[]>([]);
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
 
-const Home: React.FC<HomeProps> = ({ videos, articles }) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch latest videos
+        const videosRes = await fetch('/api/latest?type=videos');
+        const { results: latestVideos } = await videosRes.json();
+        setVideos(latestVideos || []);
+
+        // Fetch latest articles
+        const articlesRes = await fetch('/api/latest?type=articles');
+        const { results: latestArticles } = await articlesRes.json();
+        setArticles(latestArticles || []);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <Head>
@@ -36,13 +52,29 @@ const Home: React.FC<HomeProps> = ({ videos, articles }) => {
             {/* Latest Videos */}
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Latest Videos</h2>
-              <LatestVideos videos={videos} />
+              {loading ? (
+                <div className="animate-pulse">
+                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
+                  <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                  <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+                </div>
+              ) : (
+                <LatestVideos videos={videos} />
+              )}
             </div>
 
             {/* Latest News */}
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Latest News</h2>
-              <LatestNews articles={articles} />
+              {loading ? (
+                <div className="animate-pulse">
+                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
+                  <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                  <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+                </div>
+              ) : (
+                <LatestNews articles={articles} />
+              )}
             </div>
           </div>
         </div>
@@ -50,51 +82,5 @@ const Home: React.FC<HomeProps> = ({ videos, articles }) => {
     </>
   );
 };
-
-export async function getServerSideProps({ env }: { env: { VIDEO_DATA: KVNamespace } }) {
-  try {
-    // Get all videos and articles from KV
-    const [videosList, articlesList] = await Promise.all([
-      env.VIDEO_DATA.list({ prefix: 'video:' }),
-      env.VIDEO_DATA.list({ prefix: 'article:' })
-    ]);
-
-    // Get the latest 5 items for each
-    const latestVideos = await Promise.all(
-      (videosList.keys as KVKey[])
-        .sort((a, b) => (b.metadata?.timestamp || 0) - (a.metadata?.timestamp || 0))
-        .slice(0, 5)
-        .map(async (key) => {
-          const data = await env.VIDEO_DATA.get(key.name, { type: 'json' });
-          return data as Video;
-        })
-    );
-
-    const latestArticles = await Promise.all(
-      (articlesList.keys as KVKey[])
-        .sort((a, b) => (b.metadata?.timestamp || 0) - (a.metadata?.timestamp || 0))
-        .slice(0, 5)
-        .map(async (key) => {
-          const data = await env.VIDEO_DATA.get(key.name, { type: 'json' });
-          return data as Article;
-        })
-    );
-
-    return {
-      props: {
-        videos: latestVideos,
-        articles: latestArticles
-      }
-    };
-  } catch (error) {
-    console.error('Error fetching data from KV:', error);
-    return {
-      props: {
-        videos: [],
-        articles: []
-      }
-    };
-  }
-}
 
 export default Home; 

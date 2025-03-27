@@ -1,0 +1,42 @@
+{
+    "git.path": "/usr/bin/git",
+    "workbench.startupEditor": "none",
+    "liveServer.settings.donotVerifyTags": true,
+    "git.autofetch": true,
+    "explorer.confirmDelete": false,
+    "chat.editing.alwaysSaveWithGeneratedChanges": true,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "explorer.confirmDragAndDrop": false,
+    
+    "terminal.integrated.cwd": "/home/aviddavidruck",
+    
+    "python.defaultInterpreterPath": "/usr/bin/python3",
+    
+    "files.exclude": {
+        "**/articles/*.html": false
+    },
+
+    "git.openRepositoryInParentFolders": "never",
+    "cursor.general.gitGraphIndexing": "enabled",
+    "terminal.integrated.shellIntegration.enabled": false,
+
+    "terminal.external.windowsExec": "C:\\Windows\\System32\\wsl.exe",
+
+    "terminal.integrated.profiles.linux": {
+        "WSL": {
+            "path": "/usr/bin/bash"
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "WSL",
+    "terminal.integrated.defaultProfile.osx": "",
+    "terminal.integrated.defaultProfile.windows": "WSL",
+    "terminal.integrated.profiles.windows": {
+        "WSL": {
+            "path": "wsl.exe",
+            "args": []
+        }
+    }
+} 
