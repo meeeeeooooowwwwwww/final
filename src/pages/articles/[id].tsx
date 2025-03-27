@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import type { Article } from '../../types';
 import Head from 'next/head';
 
+export const runtime = 'edge';
+
 export default function ArticlePage() {
   const router = useRouter();
   const { id } = router.query;
@@ -80,11 +82,4 @@ export default function ArticlePage() {
       </div>
     </>
   );
-}
-
-// Add getServerSideProps to handle server-side rendering
-export async function getServerSideProps() {
-  return {
-    props: {}, // Return empty props since we'll handle data fetching on the client side
-  };
 } 
